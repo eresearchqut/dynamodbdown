@@ -13,11 +13,11 @@ Klaus Trainer's DynamoDBDOWN with the following changes:
 
 * Uses the V3 version of the dynamodb SDK 
 * The client is passed to the implementation
-* Tested using the abstract level down test suite (not all tests are passing)
+* Tested using the abstract level down test suite (test suite is run manually)
 
 ## Usage
 
-Documentation pending
+Documentation pending (look at test.js to get a basic usage)
 
 ## Acknowledgments
 
