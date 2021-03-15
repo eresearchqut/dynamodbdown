@@ -6,12 +6,19 @@ const crypto = require('crypto')
 
 const dynaliteServer = dynalite({ createTableMs: 0 })
 const dynamoDBClient = new DynamoDBClient({
-  endpoint: 'http://localhost:4567',
-  region: 'local'
+  endpoint: 'http://localhost:14567',
+  region: 'local',
+  credentials: {
+    accessKeyId: 'not-a-key',
+    secretAccessKey: 'not-a-secret-key'
+  },
+  httpOptions: {
+    timeout: 15000
+  }
 })
 
 test('open dynalite', async function (assert) {
-  assert.doesNotThrow(() => dynaliteServer.listen(4567, function (err) {
+  assert.doesNotThrow(() => dynaliteServer.listen(14567, function (err) {
     if (err) {
       assert.comment('Failed to open dynalite')
       throw err
