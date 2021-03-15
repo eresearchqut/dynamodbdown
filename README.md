@@ -30,13 +30,3 @@ DynamoDbDown has been heavily inspired by:
 
 [MIT](LICENSE.md) © 2021-present Ryan Bennett and [Contributors](CONTRIBUTORS.md).
 
-[`abstract-leveldown`]: https://github.com/Level/abstract-leveldown
-
-[`levelup`]: https://github.com/Level/levelup
-
-[`leveldown`]: https://github.com/Level/leveldown
-
-[level-badge]: https://leveljs.org/img/badge.svg
-
-[`memdown`]: https://github.com/Level/memdown
-

@@ -9,7 +9,7 @@
   "main": "dynamodbdown.js",
   "scripts": {
     "test": "standard --fix && hallmark && (nyc -s node test.js | faucet) && nyc report",
-Removed airtap dependencies    "hallmark": "hallmark --fix",
+    "hallmark": "hallmark --fix",
     "dependency-check": "dependency-check . test.js",
     "prepublishOnly": "npm run dependency-check"
   },
@@ -28,14 +28,14 @@ Removed airtap dependencies    "hallmark": "hallmark --fix",
   "devDependencies": {
     "coveralls": "^3.0.2",
     "dependency-check": "^3.3.0",
+    "dynalite": "^3.2.1",
     "faucet": "^0.0.1",
     "hallmark": "^3.1.0",
     "level-community": "^3.0.0",
     "level-concat-iterator": "^2.0.0",
     "nyc": "^14.0.0",
     "standard": "^14.0.0",
-    "tape": "^5.0.1",
-    "dynalite": "^3.2.1"
+    "tape": "^5.0.1"
   },
   "hallmark": {
     "community": "level-community"
