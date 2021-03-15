@@ -9,8 +9,7 @@
   "main": "dynamodbdown.js",
   "scripts": {
     "test": "standard --fix && hallmark && (nyc -s node test.js | faucet) && nyc report",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "hallmark": "hallmark --fix",
+Removed airtap dependencies    "hallmark": "hallmark --fix",
     "dependency-check": "dependency-check . test.js",
     "prepublishOnly": "npm run dependency-check"
   },
@@ -27,7 +26,6 @@
     "through2": "^4.0.2"
   },
   "devDependencies": {
-    "airtap": "^3.0.0",
     "coveralls": "^3.0.2",
     "dependency-check": "^3.3.0",
     "faucet": "^0.0.1",
@@ -44,15 +42,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Level/memdown.git"
+    "url": "https://github.com/eresearchqut/dynamodbdown.git"
   },
-  "homepage": "https://github.com/Level/memdown",
+  "homepage": "https://github.com/eresearchqut/dynamodbdown",
   "keywords": [
     "level",
     "leveldb",
     "leveldown",
     "levelup",
-    "memory"
+    "dynamodb",
+    "V3"
   ],
   "engines": {
     "node": ">=6"
