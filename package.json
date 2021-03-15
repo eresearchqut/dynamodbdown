@@ -1,0 +1,60 @@
+{
+  "name": "@eresearchqut/dynamodbdown",
+  "version": "1.0.0",
+  "description": "Dynamodb V3 leveldown store for Node.js",
+  "authors": [
+    "Ryan Bennett "
+  ],
+  "license": "MIT",
+  "main": "dynamodbdown.js",
+  "scripts": {
+    "test": "standard --fix && hallmark && (nyc -s node test.js | faucet) && nyc report",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "hallmark": "hallmark --fix",
+    "dependency-check": "dependency-check . test.js",
+    "prepublishOnly": "npm run dependency-check"
+  },
+  "files": [
+    "dynamodbdown.js",
+    "iterator.js",
+    "CONTRIBUTORS.md"
+  ],
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.7.0",
+    "@aws-sdk/util-dynamodb": "^3.7.0",
+    "abstract-leveldown": "^6.3.0",
+    "inherits": "^2.0.1",
+    "through2": "^4.0.2"
+  },
+  "devDependencies": {
+    "airtap": "^3.0.0",
+    "coveralls": "^3.0.2",
+    "dependency-check": "^3.3.0",
+    "faucet": "^0.0.1",
+    "hallmark": "^3.1.0",
+    "level-community": "^3.0.0",
+    "level-concat-iterator": "^2.0.0",
+    "nyc": "^14.0.0",
+    "standard": "^14.0.0",
+    "tape": "^5.0.1",
+    "dynalite": "^3.2.1"
+  },
+  "hallmark": {
+    "community": "level-community"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Level/memdown.git"
+  },
+  "homepage": "https://github.com/Level/memdown",
+  "keywords": [
+    "level",
+    "leveldb",
+    "leveldown",
+    "levelup",
+    "memory"
+  ],
+  "engines": {
+    "node": ">=6"
+  }
+}
