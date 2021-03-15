@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 
-**Copyright © 2013-present Ryan Bennett and [Contributors](CONTRIBUTORS.md).**
+**Copyright © 2021-present Ryan Bennett and [Contributors](CONTRIBUTORS.md).**
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
