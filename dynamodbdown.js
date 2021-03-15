@@ -84,12 +84,12 @@ DynamoDBDOWN.prototype._batch = function (array, options, callback) {
     // Dynamodb will reject duplicates in the batch
     // Remove earlier instances of the item if the operation is of the same type
     if (operationKeys[item.key]) {
-      const idx = operations.findIndex(command => {
+      const duplicateIndex = operations.findIndex(command => {
         return (command.DeleteRequest && command.DeleteRequest.Key.rangeKey.S === item.key) ||
           (command.PutRequest && command.PutRequest.Item.rangeKey.S === item.key)
       })
-      if (idx !== -1) {
-        operations.splice(idx, 1)
+      if (duplicateIndex !== -1) {
+        operations.splice(duplicateIndex, 1)
       }
     }
 
