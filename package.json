@@ -1,6 +1,6 @@
 {
   "name": "@eresearchqut/dynamodbdown",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Dynamodb V3 leveldown store for Node.js",
   "authors": [
     "Ryan Bennett "
@@ -8,8 +8,7 @@
   "license": "MIT",
   "main": "dynamodbdown.js",
   "scripts": {
-    "test": "exit 0",
-    "test-suite": "standard --fix && hallmark && (nyc -s node test.js | faucet) && nyc report",
+    "test": "standard --fix && hallmark && (nyc -s node test.js | faucet) && nyc report",
     "hallmark": "hallmark --fix",
     "dependency-check": "dependency-check . test.js",
     "prepublishOnly": "npm run dependency-check"
@@ -52,6 +51,7 @@
     "leveldown",
     "levelup",
     "dynamodb",
+    "aws",
     "V3"
   ],
   "engines": {

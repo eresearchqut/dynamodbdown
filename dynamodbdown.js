@@ -30,17 +30,21 @@ DynamoDBDOWN.prototype._open = function (options, callback) {
 }
 
 DynamoDBDOWN.prototype._put = function (key, value, options, callback) {
-  this.dynamoDBClient
-    .send(new PutItemCommand({
-      TableName: this.tableName,
-      Item: marshall({
-        hashKey: this.partition,
-        rangeKey: key.toString(),
-        value: value
-      })
-    }))
-    .then(() => process.nextTick(callback))
-    .catch(error => process.nextTick(callback, error))
+  try {
+    this.dynamoDBClient
+      .send(new PutItemCommand({
+        TableName: this.tableName,
+        Item: marshall({
+          hashKey: this.partition,
+          rangeKey: key.toString(),
+          value: value
+        })
+      }))
+      .then(() => process.nextTick(callback))
+      .catch(error => process.nextTick(callback, error))
+  } catch (marshallError) {
+    process.nextTick(callback, marshallError)
+  }
 }
 
 DynamoDBDOWN.prototype._get = function (key, options, callback) {
@@ -82,7 +86,7 @@ DynamoDBDOWN.prototype._batch = function (array, options, callback) {
     if (operationKeys[item.key]) {
       const idx = operations.findIndex(command => {
         return (command.DeleteRequest && command.DeleteRequest.Key.rangeKey.S === item.key) ||
-                    (command.PutRequest && command.PutRequest.Item.rangeKey.S === item.key)
+          (command.PutRequest && command.PutRequest.Item.rangeKey.S === item.key)
       })
       if (idx !== -1) {
         operations.splice(idx, 1)
@@ -96,16 +100,15 @@ DynamoDBDOWN.prototype._batch = function (array, options, callback) {
           rangeKey: item.key.toString()
         })
       }
-    }
-      : {
-        PutRequest: {
-          Item: marshall({
-            hashKey: this.partition,
-            rangeKey: item.key.toString(),
-            value: item.value
-          })
-        }
+    } : {
+      PutRequest: {
+        Item: marshall({
+          hashKey: this.partition,
+          rangeKey: item.key.toString(),
+          value: item.value
+        })
       }
+    }
 
     operationKeys[item.key] = true
     operations.push(operation)
