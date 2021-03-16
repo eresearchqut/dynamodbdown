@@ -2,6 +2,7 @@ const BASE_LOGICAL_SIZE_OF_NESTED_TYPES = 1
 const LOGICAL_SIZE_OF_EMPTY_DOCUMENT = 3
 const { encode } = require('utf8')
 const atob = require('atob')
+const Decimal = require('decimal.js-light')
 
 // Inspired by https://zaccharles.github.io/dynamodb-calculator/ and adapted for node
 
@@ -31,7 +32,8 @@ const calculateAttributeSizeInBytes = (attribute) => {
 
 const calculateNumberSizeInBytes = (number) => {
   if (number === 0) return 1
-  const fixed = Number.parseFloat(number).toFixed()
+  const decimal = new Decimal(number)
+  const fixed = decimal.toFixed()
   let size = calculateFixedSizeInBytes(fixed.replace('-', '')) + 1
   if (fixed.startsWith('-')) size++
   if (size > 21) size = 21

@@ -23,6 +23,7 @@
     "@aws-sdk/util-dynamodb": "^3.7.0",
     "abstract-leveldown": "^6.3.0",
     "atob": "^2.1.2",
+    "decimal.js-light": "^2.5.1",
     "inherits": "^2.0.1",
     "through2": "^4.0.2",
     "utf8": "^3.0.0"
