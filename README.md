@@ -9,11 +9,13 @@
 
 
 An abstract level down implementation that uses dynamodb as a persistent store. This work is based on 
-Klaus Trainer's DynamoDBDOWN with the following changes:
+Klaus Trainer's [DynamoDBDOWN](https://github.com/KlausTrainer/dynamodbdown) with the following changes:
 
 * Uses the V3 version of the dynamodb SDK 
 * The client is passed to the implementation
 * Tested using the abstract level down test suite (test suite is run manually)
+
+The item size calculator is an adaptation of Zac Charles [dynamodb-calculator](https://zaccharles.github.io/dynamodb-calculator/)
 
 ## Usage
 
@@ -25,6 +27,7 @@ DynamoDbDown has been heavily inspired by:
 
 - Klaus Trainer's [DynamoDBDOWN](https://github.com/KlausTrainer/dynamodbdown)
 - Rod Vagg's [memdown](https://github.com/Level/memdown)
+- Zac Charles [dynamodb-calculator](https://zaccharles.github.io/dynamodb-calculator/) 
 
 ## License
 

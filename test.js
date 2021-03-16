@@ -18,12 +18,12 @@ const dynamoDBClient = new DynamoDBClient({
 })
 
 test('open dynalite', async function (assert) {
-  assert.doesNotThrow(() => dynaliteServer.listen(14567, function (err) {
-    if (err) {
-      assert.comment('Failed to open dynalite')
-      throw err
+  assert.doesNotThrow(() => dynaliteServer.listen(14567, function (error) {
+    if (error) {
+      assert.error(error, 'Failed to open dynaliteServer')
+    } else {
+      assert.end()
     }
-    assert.end()
   }))
 })
 
@@ -39,7 +39,8 @@ test('create table', async function (assert) {
       ReadCapacityUnits: 1,
       WriteCapacityUnits: 1
     }
-  })).then(() => assert.end()).catch(error => console.log(error))
+  })).then(() => assert.end())
+    .catch(error => assert.error(error, 'Failed to create test table'))
 })
 
 // Dynamodb doesn't support the isolation level required by levelup, we pass a random partition (hashKey)

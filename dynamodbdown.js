@@ -11,7 +11,9 @@ const {
 
 const { marshall, unmarshall } = require('@aws-sdk/util-dynamodb')
 const MAX_BATCH_SIZE = 25
+const MAX_ITEM_SIZE_IN_BYTES = 400000
 const DynamoDBIterator = require('./iterator')
+const calculateItemSizeInBytes = require('./itemsize')
 
 function DynamoDBDOWN (dynamoDBClient, tableName, partition) {
   if (!(this instanceof DynamoDBDOWN)) {
@@ -31,14 +33,19 @@ DynamoDBDOWN.prototype._open = function (options, callback) {
 
 DynamoDBDOWN.prototype._put = function (key, value, options, callback) {
   try {
+    const Item = marshall({
+      hashKey: this.partition,
+      rangeKey: key.toString(),
+      value: value
+    })
+    const itemSize = calculateItemSizeInBytes(Item)
+    if (itemSize > MAX_ITEM_SIZE_IN_BYTES) {
+      throw new Error(`Max Item Size Exceeded: ${key}, Size: ${itemSize}`)
+    }
     this.dynamoDBClient
       .send(new PutItemCommand({
         TableName: this.tableName,
-        Item: marshall({
-          hashKey: this.partition,
-          rangeKey: key.toString(),
-          value: value
-        })
+        Item
       }))
       .then(() => process.nextTick(callback))
       .catch(error => process.nextTick(callback, error))
@@ -76,11 +83,11 @@ DynamoDBDOWN.prototype._del = function (key, options, callback) {
     .catch(error => process.nextTick(callback, error))
 }
 
-DynamoDBDOWN.prototype._batch = function (array, options, callback) {
+DynamoDBDOWN.prototype._batch = function (items, options, callback) {
   const operationKeys = {}
   const operations = []
 
-  array.forEach((item) => {
+  items.forEach((item) => {
     // Dynamodb will reject duplicates in the batch
     // Remove earlier instances of the item if the operation is of the same type
     if (operationKeys[item.key]) {
