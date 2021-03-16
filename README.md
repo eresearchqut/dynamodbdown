@@ -3,7 +3,7 @@
 > Dynamodb V3 leveldown store for Node.js.
 
 [![level badge](https://leveljs.org/img/badge.svg)](https://github.com/Level/awesome)
-[![npm](https://img.shields.io/npm/v/@eresearchqut/dynamodbdown.svg?label=&logo=npm)](https://www.npmjs.com/package/dynamodbdown)
+[![npm](https://img.shields.io/npm/v/@eresearchqut/dynamodbdown.svg?label=&logo=npm)](https://www.npmjs.com/package/@eresearchqut/dynamodbdown)
 [![Node version](https://img.shields.io/node/v/@eresearchqut/dynamodbdown.svg)](https://www.npmjs.com/package/dynamodbdown)
 [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
