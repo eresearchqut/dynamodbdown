@@ -8,9 +8,9 @@ const Decimal = require('decimal.js-light')
 
 const calculateItemSizeInBytes = (item) => {
   if (!item) return 0
-  const itemSize =  Object.keys(item).reduce((size, key) =>
+  const itemSize = Object.keys(item).reduce((size, key) =>
     size + encode(key).length + calculateAttributeSizeInBytes(item[key]), 0)
-  return itemSize;
+  return itemSize
 }
 
 const calculateAttributeSizeInBytes = (attribute) => {

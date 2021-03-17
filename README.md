@@ -27,7 +27,7 @@ DynamoDbDown has been heavily inspired by:
 
 - Klaus Trainer's [DynamoDBDOWN](https://github.com/KlausTrainer/dynamodbdown)
 - Rod Vagg's [memdown](https://github.com/Level/memdown)
-- Zac Charles [dynamodb-calculator](https://zaccharles.github.io/dynamodb-calculator/) 
+- Zac Charles [dynamodb-calculator](https://github.com/zaccharles/dynamodb-calculator) 
 
 ## License
 

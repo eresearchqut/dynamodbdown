@@ -3,6 +3,25 @@ const suite = require('abstract-leveldown/test')
 const test = require('tape')
 const dynalite = require('dynalite')
 const crypto = require('crypto')
+const itemsize = require('./itemsize')
+const { marshall } = require('@aws-sdk/util-dynamodb')
+
+test('item size test', (assert) => {
+  const item = {
+    id: 'f0ba8d6c',
+    fullName: 'Zac Charles',
+    isAdmin: true,
+    favouriteNumber: -1e-130,
+    foods: [
+      'pizza',
+      'burger'
+    ]
+  }
+  const itemSize = itemsize(marshall(item))
+  // Zacs original calculation is 71 as foods is marshalled as a string set
+  assert.equals(76, itemSize, 'Expected item size to equal 76 bytes')
+  assert.end()
+})
 
 const dynaliteServer = dynalite({ createTableMs: 0 })
 const dynamoDBClient = new DynamoDBClient({
