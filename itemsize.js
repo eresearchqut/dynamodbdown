@@ -8,8 +8,9 @@ const Decimal = require('decimal.js-light')
 
 const calculateItemSizeInBytes = (item) => {
   if (!item) return 0
-  return Object.keys(item).reduce((size, key) =>
+  const itemSize =  Object.keys(item).reduce((size, key) =>
     size + encode(key).length + calculateAttributeSizeInBytes(item[key]), 0)
+  return itemSize;
 }
 
 const calculateAttributeSizeInBytes = (attribute) => {
@@ -24,7 +25,7 @@ const calculateAttributeSizeInBytes = (attribute) => {
     case 'BOOL' : return 1
     case 'N' : return calculateNumberSizeInBytes(attribute.N)
     case 'NS': return attribute.NS.reduce((size, value) => size + calculateNumberSizeInBytes(value).length, 0)
-    case 'L' : return attribute.L.reduce((size, value) => size + BASE_LOGICAL_SIZE_OF_NESTED_TYPES + calculateAttributeSizeInBytes(value).length, LOGICAL_SIZE_OF_EMPTY_DOCUMENT)
+    case 'L' : return attribute.L.reduce((size, value) => size + BASE_LOGICAL_SIZE_OF_NESTED_TYPES + calculateAttributeSizeInBytes(value), LOGICAL_SIZE_OF_EMPTY_DOCUMENT)
     case 'M' : return Object.keys(attribute.M).map((size, key) => size + BASE_LOGICAL_SIZE_OF_NESTED_TYPES + encode(key).length + calculateAttributeSizeInBytes(attribute.M[key]), LOGICAL_SIZE_OF_EMPTY_DOCUMENT)
     default : throw new Error(`cannot calculate attribute type ${type}.`)
   }

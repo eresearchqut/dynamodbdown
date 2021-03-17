@@ -1,6 +1,6 @@
 {
   "name": "@eresearchqut/dynamodbdown",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Dynamodb V3 leveldown store for Node.js",
   "authors": [
     "Ryan Bennett "
@@ -38,7 +38,8 @@
     "level-concat-iterator": "^2.0.0",
     "nyc": "^14.0.0",
     "standard": "^14.0.0",
-    "tape": "^5.0.1"
+    "tape": "^5.0.1",
+    "uuid": "^8.3.2"
   },
   "hallmark": {
     "community": "level-community"
