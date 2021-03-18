@@ -1,6 +1,6 @@
 {
   "name": "@eresearchqut/dynamodbdown",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Dynamodb V3 leveldown store for Node.js",
   "authors": [
     "Ryan Bennett "
@@ -16,6 +16,7 @@
   "files": [
     "dynamodbdown.js",
     "iterator.js",
+    "itemsize.js",
     "CONTRIBUTORS.md"
   ],
   "dependencies": {
